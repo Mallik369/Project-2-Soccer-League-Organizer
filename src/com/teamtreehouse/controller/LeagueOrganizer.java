@@ -4,11 +4,7 @@ import com.teamtreehouse.model.Player;
 import com.teamtreehouse.model.Team;
 import com.teamtreehouse.model.Teams;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class LeagueOrganizer {
 
@@ -44,16 +40,25 @@ public class LeagueOrganizer {
         return mTeams;
     }
 
+    /*
+    protected Map<String,String> currentTeamsInLeague( ) {
+        Map<String,String> leagueTeams = new HashMap<>();
+        for(Team team: mTeams.getTeams()) {
+            leagueTeams.put(team.getTeamName(),team.getCoachName())
+        }
+        return leagueTeams;
+    }
+    */
+
     protected int getMaxTeams( ) {
         int maxTeams = mPlayers.length/ maxPlayersinTeam;
         return maxTeams;
     }
 
-    protected Team addTeam(String teamName, String coachName) throws IOException {
+    protected void addTeam(String teamName, String coachName) throws IOException {
         Team newTeam = new Team(teamName, coachName);
         mTeams.addTeam(newTeam);
         Collections.sort(mTeams.getTeams(), new Team());
-        return newTeam;
     }
 
     protected void addPlayer(Team team , Player player) throws IOException {

@@ -7,6 +7,7 @@ import com.teamtreehouse.model.Teams;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -101,8 +102,9 @@ public class Prompter {
             String teamName = userInput();
             System.out.println("Enter the Coach Name");
             String coachName = userInput();
-            Team newTeam = mLeagueOrganizer.addTeam(teamName,coachName);
-            System.out.printf("%n%s%n", newTeam);
+            mLeagueOrganizer.addTeam(teamName,coachName);
+            System.out.printf("%nTeam : %s Created with Coach %s%n",
+                    teamName,coachName);
         } else {
             System.out.printf("%nYou have created %d Team,Dont have " +
                     "Sufficent Players to Create " +
@@ -264,13 +266,17 @@ public class Prompter {
     Output  : Display List of Teams
     Team No,Team Name, Team Coach Name
     */
-    public void displayTeam( ) {
+    private void displayTeam( ) {
 
         int counter = 1;
+        //Map<String,String> currentTeams = new HashMap<>();
+        //currentTeams = mLeagueOrganizer.currentTeamsInLeague();
+        //for (Map.Entry<String,String> team : currentTeams.entrySet()) {
         for(Team team : mLeagueOrganizer.getTeams().getTeams()) {
             displayTeamHeader();
-            System.out.format("%n%-5d %-30s %-30s %n",
+            System.out.format("%n%-5d %-30s %-30s",
                     counter,team.getTeamName(),team.getCoachName());
+                    /* counter,team.getkey(),team.getValue()); */
             System.out.printf("%n%s Team Players %n",team.getTeamName());
             displayPlayer(team.getTeamPlayers().toArray(new Player[team.getTeamSize()]));
             counter++;
@@ -284,7 +290,7 @@ public class Prompter {
     Player FirstName,LastName,Height,Experience
     */
 
-    public void displayPlayer(Player[] playersList) {
+    private void displayPlayer(Player[] playersList) {
 
         int counter = 1;
         displayPlayerHeader();
@@ -302,7 +308,7 @@ public class Prompter {
 
     //Output : Display Team Height Report
 
-    public void displayheightReport(Map<Integer, Integer> heightReport) {
+    private void displayheightReport(Map<Integer, Integer> heightReport) {
         String header1 = "Height";
         String header2 = "Count";
         System.out.format("%n%-10s %-10s%n",
@@ -322,7 +328,7 @@ public class Prompter {
     @ leagueReport : Holds League report
     @ teamReport : Holds each Team report
     */
-    public void displayLeagueReport(Map<String, Map<String, Integer>> leagueReport) {
+    private void displayLeagueReport(Map<String, Map<String, Integer>> leagueReport) {
         String header1 = "Experience Status";
         String header2 = "No of Players";
         for (Map.Entry<String, Map<String, Integer>> leagueReports : leagueReport.entrySet()) {
@@ -345,7 +351,7 @@ public class Prompter {
     Returns choice to Prompt for Team and Player
     */
 
-    public int userChoice() throws IOException {
+    private int userChoice() throws IOException {
         int choice;
         boolean isValid = false;
         String optionAsString = " ";
@@ -370,7 +376,7 @@ public class Prompter {
     Returns name to Runnable Method
     */
 
-    public String userInput() throws IOException {
+    private String userInput() throws IOException {
         boolean isValid = false;
         String name = " ";
         while (!isValid) {
