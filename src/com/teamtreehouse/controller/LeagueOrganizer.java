@@ -40,6 +40,8 @@ public class LeagueOrganizer {
         return mTeams;
     }
 
+    protected int noofTeams () { return mTeams.getSize();}
+
     /*
     protected Map<String,String> currentTeamsInLeague( ) {
         Map<String,String> leagueTeams = new HashMap<>();

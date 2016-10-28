@@ -94,7 +94,7 @@ public class Prompter {
     }
 
     private void addNewTeam() throws IOException {
-        int teams = mLeagueOrganizer.getTeams().getSize();
+        int teams = mLeagueOrganizer.noofTeams();
         int maxTeams = mLeagueOrganizer.getMaxTeams();
 
         if(teams < maxTeams) {
